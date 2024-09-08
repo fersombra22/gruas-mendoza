@@ -34,12 +34,38 @@
     </header>
 
     <main role="main">
-        <div class="container">
-            <img src="img/contacto.jpg" class="img-fluid-1" alt="Imagen de contacto">
+        <div class="container mt-4">
+            <img src="img/contacto.jpg" class="img-fluid" alt="Imagen de contacto">
             <h2 class="text-center">Información de Contacto</h2>
             <p class="text-center">Si necesitas nuestra ayuda, no dudes en contactarnos.</p>
-            <p class="text-center mt-3"> 2615123456 </p>
+            <p class="text-center mt-3">2615123456</p>
             <p class="text-center">Vuelve <a href="index.html">aquí</a> para regresar al inicio.</p>
+            
+            <!-- Formulario de Solicitud -->
+            <h3 class="text-center mt-4">Formulario de Solicitud de Grúa</h3>
+            <form action="guardar_solicitud.php" method="post">
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="apellido">Apellido:</label>
+                    <input type="text" class="form-control" id="apellido" name="apellido" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Teléfono:</label>
+                    <input type="tel" class="form-control" id="telefono" name="telefono" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail:</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="descripcion">Descripción del Problema:</label>
+                    <textarea class="form-control" id="descripcion" name="descripcion" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
         </div>
     </main>
 
@@ -54,3 +80,4 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+
