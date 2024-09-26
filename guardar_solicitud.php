@@ -1,44 +1,53 @@
 <?php
-// Mostrar datos recibidos para depuración
-echo "<h1>Datos del Formulario:</h1>";
-var_dump($_POST);
+// Configuración de la base de datos
+$servername = "localhost"; 
+$username = "root"; 
+$password = "root"; 
+$dbname = "gruas";
 
-$conn = new PDO("mysql:host=localhost;dbname=gruas", "root", "root");
+// Crear conexión
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-// Verificar si los datos están disponibles en el array $_POST
-if (isset($_POST['nombre']) && isset($_POST['apellido']) && isset($_POST['telefono']) && isset($_POST['email']) && isset($_POST['descripcion'])) {
-    // Recoger datos del formulario
-    $nombre = $_POST['nombre'];
-    $apellido = $_POST['apellido'];
-    $telefono = $_POST['telefono'];
-    $email = $_POST['email'];
-    $descripcion = $_POST['descripcion'];
+// Verificar la conexión
+if ($conn->connect_error) {
+    die("Error de conexión: " . $conn->connect_error);
+}
 
-    try {
-        // Preparar la consulta SQL
-        $sql = "INSERT INTO solicitudes (nombre, apellido, telefono, email, descripcion) VALUES (:nombre, :apellido, :telefono, :email, :descripcion)";
-        $stmt = $conn->prepare($sql);
+// Verificar si el formulario fue enviado
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $nombre = $_POST['nombre'] ?? null;
+    $apellido = $_POST['apellido'] ?? null;
+    $telefono = $_POST['telefono'] ?? null;
+    $email = $_POST['email'] ?? null;
+    $descripcion = $_POST['descripcion'] ?? null;
 
-        // Vincular los parámetros
-        $stmt->bindParam(':nombre', $nombre);
-        $stmt->bindParam(':apellido', $apellido);
-        $stmt->bindParam(':telefono', $telefono);
-        $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':descripcion', $descripcion);
-
-        // Ejecutar la consulta
-        $stmt->execute();
-
-        echo "Solicitud guardada con éxito.";
-    } catch (PDOException $e) {
-        echo "Error al guardar la solicitud: " . $e->getMessage();
+    // Verificar campos obligatorios
+    if (empty($nombre) || empty($apellido) || empty($telefono) || empty($email) || empty($descripcion)) {
+        die("Error: Todos los campos son obligatorios.");
     }
 
-    // Cerrar la conexión (no es necesario con PDO, se cierra automáticamente al destruir el objeto)
-    $conn = null;
+    // Preparar y vincular la declaración
+    $stmt = $conn->prepare("INSERT INTO solicitudes (nombre, apellido, telefono, email, descripcion) VALUES (?, ?, ?, ?, ?)");
+    if ($stmt === false) {
+        die("Error en la preparación: " . $conn->error);
+    }
+    
+    $stmt->bind_param("sssss", $nombre, $apellido, $telefono, $email, $descripcion);
+
+    // Ejecutar la declaración
+    if ($stmt->execute()) {
+        echo "Solicitud guardada correctamente.";
+    } else {
+        echo "Error: " . $stmt->error;
+    }
+
+    // Cerrar la declaración y conexión
+    $stmt->close();
 } else {
-    echo "Faltan datos en el formulario.";
+    die("Error: El formulario no se envió.");
 }
+
+$conn->close();
 ?>
 
 
