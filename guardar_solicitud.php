@@ -20,22 +20,30 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $telefono = $_POST['telefono'] ?? null;
     $email = $_POST['email'] ?? null;
     $descripcion = $_POST['descripcion'] ?? null;
+    $camion_id = $_POST['camion_seleccionado'] ?? null; // ID del camión seleccionado
 
     // Verificar campos obligatorios
     if (empty($nombre) || empty($apellido) || empty($telefono) || empty($email) || empty($descripcion)) {
         die("Error: Todos los campos son obligatorios.");
     }
 
-    // Preparar y vincular la declaración
-    $stmt = $conn->prepare("INSERT INTO solicitudes (nombre, apellido, telefono, email, descripcion) VALUES (?, ?, ?, ?, ?)");
+    // Preparar y vincular la declaración para insertar la solicitud
+    $stmt = $conn->prepare("INSERT INTO solicitudes (nombre, apellido, telefono, email, descripcion, camion_id) VALUES (?, ?, ?, ?, ?, ?)");
     if ($stmt === false) {
         die("Error en la preparación: " . $conn->error);
     }
-    
-    $stmt->bind_param("sssss", $nombre, $apellido, $telefono, $email, $descripcion);
 
-    // Ejecutar la declaración
+    $stmt->bind_param("sssssi", $nombre, $apellido, $telefono, $email, $descripcion, $camion_id);
+
+    // Ejecutar la declaración para insertar la solicitud
     if ($stmt->execute()) {
+        // Actualizar el estado del camión solo si se ha seleccionado un camión
+        if ($camion_id) {
+            $stmt_camion = $conn->prepare("UPDATE camiones SET estado = 'ocupado', tiempo_ocupacion = 60 WHERE id = ?");
+            $stmt_camion->bind_param("i", $camion_id);
+            $stmt_camion->execute();
+            $stmt_camion->close();
+        }
         echo "Solicitud guardada correctamente.";
     } else {
         echo "Error: " . $stmt->error;
@@ -49,9 +57,3 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 $conn->close();
 ?>
-
-
-    
-   
-
-

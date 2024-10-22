@@ -3,6 +3,17 @@ img{
     height: 11vh;
     margin-right: 1vw;
 }
+.camiones-container{
+    display: flex;
+    align-content: space-between;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-height: 90vh;
+    overflow-y: scroll;
+}
+.card{
+    width: fit-content;
+}
 .jumbotron img.img-fluid {
     max-width: 100%;
     height: 30vh; 
