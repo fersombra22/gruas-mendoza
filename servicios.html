@@ -1,30 +1,42 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- Metadatos del documento, para especificar el tipo de codificación y la adaptabilidad a dispositivos móviles -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Servicios - Servicio de Grúa</title>
+    
+    <!-- Enlace al archivo CSS personalizado -->
     <link rel="stylesheet" href="estilo.css">
+    
+    <!-- Enlace a la librería Bootstrap para diseño responsivo y componentes predefinidos -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
+    <!-- Cabecera con la barra de navegación -->
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <!-- Logo y nombre de la empresa en la barra de navegación -->
             <a class="navbar-brand" href="#">
                 <img src="img/logo.jpeg" alt="Logo de la empresa"> Servicio de Grúa
             </a>
+            <!-- Botón para la navegación en dispositivos móviles -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
+            <!-- Menú de navegación, visible en pantallas grandes -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
+                    <!-- Enlace a la página principal -->
                     <li class="nav-item">
                         <a class="nav-link" href="index.html">Inicio</a>
                     </li>
+                    <!-- Enlace a la página de servicios, marcado como activo -->
                     <li class="nav-item active">
                         <a class="nav-link" href="servicios.html">Servicios</a>
                     </li>
+                    <!-- Enlace a la página de contacto -->
                     <li class="nav-item">
                         <a class="nav-link" href="contacto.html">Contacto</a>
                     </li>
@@ -33,38 +45,49 @@
         </nav>
     </header>
 
+    <!-- Contenido principal de la página con los servicios ofrecidos -->
     <main role="main">
         <div class="container">
+            <!-- Título de la sección de servicios -->
             <h2 class="text-center">Servicios de Grúa y Auxilio para Autos</h2>
+            
+            <!-- Lista de servicios con descripciones -->
             <ul class="list-group">
-                <li class="list-group-item"><a href="remolque.html">Remolque de Vehículos</a>
-                    <p>si tu vehiculo sufrio un accidente,
-                    o simplemente dejo de andar no dudes en llamarnos.
-                    Contamos con la mas completay nueva flota de gruas</p> </li>
-                <li class="list-group-item"><a href="asistencia.html">Asistencia en Ruta</a>
-                <p>Viaja tranquio/a tenemos la cobertura en ruta mas grande de todo cuyo,
-                     si tenes un desperfecto en tu vehiculo o un accidente contactanos!
-                     llegamos donde nadie llega.</p></li>
-                <li class="list-group-item"><a href="arranque.html">Cambio de Batería</a>
-                <p>Te quedaste sin bateria? no te preocupes mas contamos con amplio stcok en baterias
-                    nuevas contactanos y te llevamos la tuya</p></li>
-                <li class="list-group-item"><a href="neumaticos.html">Reparacion de Neumáticos</a>
-                <p>Se te pincho un neumatico? no te preocupes mas vamos a donde estes el vehiculo
-                     y lo repararmos en el lugar. si no se puede reparar contamos con neumaticos nuevos. 
-                     contactanos!</p></li>
+                <li class="list-group-item">
+                    <a href="remolque.html">Remolque de Vehículos</a>
+                    <p>Si tu vehículo sufrió un accidente, o simplemente dejó de andar, no dudes en llamarnos. Contamos con la más completa y nueva flota de grúas.</p>
+                </li>
+                <li class="list-group-item">
+                    <a href="asistencia.html">Asistencia en Ruta</a>
+                    <p>Viaja tranquilo/a, tenemos la cobertura en ruta más grande de todo Cuyo. Si tienes un desperfecto en tu vehículo o un accidente, ¡contáctanos! Llegamos donde nadie llega.</p>
+                </li>
+                <li class="list-group-item">
+                    <a href="arranque.html">Cambio de Batería</a>
+                    <p>¿Te quedaste sin batería? No te preocupes más, contamos con amplio stock en baterías nuevas. Contáctanos y te llevamos la tuya.</p>
+                </li>
+                <li class="list-group-item">
+                    <a href="neumaticos.html">Reparación de Neumáticos</a>
+                    <p>¿Se te pinchó un neumático? No te preocupes más, vamos a donde estés con el vehículo y lo reparamos en el lugar. Si no se puede reparar, contamos con neumáticos nuevos. ¡Contáctanos!</p>
+                </li>
             </ul>
+
+            <!-- Enlace para contactar en caso de necesitar ayuda -->
             <p class="text-center mt-3"><a href="contacto.html">¿Necesitas ayuda? ¡Contáctanos!</a></p>
-            <p class="text-center mt-3"> 2615123456 </p>
+            <!-- Número de contacto de la empresa -->
+            <p class="text-center mt-3">2615123456</p>
+            <!-- Enlace para volver al inicio -->
             <p class="text-center"><a href="index.html">Volver al inicio</a></p>
         </div>
     </main>
 
+    <!-- Pie de página con el copyright -->
     <footer class="text-muted text-center">
         <div class="container">
             <p>&copy; gruas Mendoza</p>
         </div>
     </footer>
 
+    <!-- Scripts necesarios para el funcionamiento de Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

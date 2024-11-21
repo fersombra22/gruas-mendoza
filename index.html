@@ -1,29 +1,43 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- Metadatos del documento, para especificar el tipo de codificación y la adaptabilidad a dispositivos móviles -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Servicio de Grúa y Auxilio para Autos</title>
+    
+    <!-- Enlace al archivo CSS para aplicar los estilos personalizados -->
     <link rel="stylesheet" href="estilo.css">
+    
+    <!-- Enlace a la librería Bootstrap para el diseño responsivo y componentes predefinidos -->
     <!-- <script src="https//code.jquery.com/jquery-3.7.1.min.js"></script> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
+    <!-- Cabecera del sitio web con la barra de navegación -->
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#"><img src="img/logo.jpeg" alt="Logo de la empresa"> Servicio de Grúa</a>
+            <!-- Logo y nombre de la empresa en la barra de navegación -->
+            <a class="navbar-brand" href="#">
+                <img src="img/logo.jpeg" alt="Logo de la empresa"> Servicio de Grúa
+            </a>
+            <!-- Botón para la navegación en dispositivos móviles -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
+            <!-- Menú de navegación, se despliega en pantallas grandes -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
+                    <!-- Enlace al inicio del sitio -->
                     <li class="nav-item active">
                         <a class="nav-link" href="index.html">Inicio</a>
                     </li>
+                    <!-- Enlace a la página de servicios -->
                     <li class="nav-item">
                         <a class="nav-link" href="servicios.html">Servicios</a>
                     </li>
+                    <!-- Enlace a la página de contacto -->
                     <li class="nav-item">
                         <a class="nav-link" href="contacto.html">Contacto</a>
                     </li>
@@ -32,26 +46,32 @@
         </nav>
     </header>
 
+    <!-- Sección principal del sitio con una presentación o mensaje destacado -->
     <main role="main">
         <section class="jumbotron text-center">
             <div class="container">
+                <!-- Imagen principal que aparece en la parte superior de la página -->
                 <img src="img/imagenprincipal.jpg" class="img-fluid" alt="Imagen principal">
+                <!-- Título principal de bienvenida -->
                 <h1 class="jumbotron-heading">¡Bienvenido a gruas Mendoza!</h1>
+                <!-- Descripción breve de los servicios que se ofrecen -->
                 <h2 class="lead text-muted">Estamos aquí para ayudarte en caso de que tu vehículo necesite de nuestra asistencia.</h2>
+                <!-- Enlace a la página de servicios -->
                 <a href="servicios.html" class="btn btn-primary my-2">Ver Servicios</a>
             </div>
         </section>
     </main>
 
+    <!-- Pie de página con el copyright de la empresa -->
     <footer class="text-muted text-center">
         <div class="container">
             <p>&copy; 2024 gruas Mendoza</p>
         </div>
     </footer>
 
+    <!-- Scripts necesarios para el funcionamiento de Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-

@@ -1,46 +1,57 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- Metadatos del documento -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto - Servicio de Grúa</title>
+    
+    <!-- Enlaces a las hojas de estilo (Bootstrap y archivo CSS personalizado) -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
     
-     <header>
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <a class="navbar-brand" href="#">
-                    <img src="img/logo.jpeg" alt="Logo de la empresa"> Servicio de Grúa
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-    
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html">Inicio</a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="servicios.html">Servicios</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contacto.html">Contacto</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-     </header>
+    <!-- Cabecera con barra de navegación -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">
+                <img src="img/logo.jpeg" alt="Logo de la empresa"> Servicio de Grúa
+            </a>
+            <!-- Botón para dispositivos móviles -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
+            <!-- Menú de navegación -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="servicios.html">Servicios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contacto.html">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contenido principal con el formulario de contacto -->
     <main class="container d-flex mt-4">
         <div class="row">
+            <!-- Columna para el formulario -->
             <div class="col-6">
                 <div class="form-container">
                     <h3 class="text-center">Formulario de Solicitud de Grúa</h3>
                     <form action="guardar_solicitud.php" method="post" id="solicitud-form">
+                        <!-- Campo oculto para enviar el ID del camión seleccionado -->
                         <input type="hidden" id="camion_seleccionado" name="camion_seleccionado" value="">
+
+                        <!-- Campos del formulario -->
                         <div class="form-group">
                             <label for="nombre">Nombre:</label>
                             <input type="text" class="form-control" id="nombre" name="nombre" required>
@@ -61,10 +72,13 @@
                             <label for="descripcion">Descripción del Problema:</label>
                             <textarea class="form-control" id="descripcion" name="descripcion" rows="3" required></textarea>
                         </div>
+                        <!-- Botón de envío del formulario -->
                         <button type="submit" class="btn btn-primary btn-block">Enviar</button>
                     </form>
                 </div>
             </div>
+
+            <!-- Columna para mostrar los camiones disponibles -->
             <div class="col-6">
                 <div id="camiones-container" class="container ml-4">
                     <!-- Aquí se cargarán los camiones mediante JavaScript -->
@@ -73,33 +87,37 @@
         </div>
     </main>
 
+    <!-- Pie de página -->
     <footer class="text-muted text-center mt-4">
         <div class="container">
             <p>&copy; 2024 Gruas Mendoza</p>
         </div>
     </footer>
 
+    <!-- Scripts de Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <script>
+        // Datos de los camiones disponibles
         const camiones = [
             { id: 1, estado: 'disponible', tiempo_ocupacion: 0 },
             { id: 2, estado: 'disponible', tiempo_ocupacion: 0 },
             { id: 3, estado: 'disponible', tiempo_ocupacion: 0 },
             { id: 4, estado: 'disponible', tiempo_ocupacion: 0 },
-            
         ];
 
         let camionSeleccionado = null;
 
+        // Función para cargar los camiones en el contenedor
         function cargarCamiones() {
             const container = document.getElementById('camiones-container');
-            container.innerHTML = ''; // Limpiar el contenedor
+            container.innerHTML = ''; // Limpiar el contenedor antes de cargar
             camiones.forEach(camion => {
                 const card = document.createElement('div');
                 card.className = 'card mb-3';
-                const logoPath = `img/camion.png`; // Imagen de los camiones
+                const logoPath = `img/camion.png`; // Ruta de la imagen del camión
                 card.innerHTML = `
                     <img src="${logoPath}" class="card-img-top" alt="Camión">
                     <div class="card-body">
@@ -115,44 +133,50 @@
             container.classList.add("camiones-container");
         }
 
+        // Función para reservar un camión
         function reservarCamion(id) {
             if (camionSeleccionado !== null) {
+                // Liberar el camión previamente seleccionado
                 const camionAnterior = camiones[camionSeleccionado - 1];
-                camionAnterior.estado = 'disponible'; // Liberar el camión anteriormente seleccionado
-                camionAnterior.tiempo_ocupacion = 0; // Reiniciar tiempo a 0
+                camionAnterior.estado = 'disponible';
+                camionAnterior.tiempo_ocupacion = 0;
             }
 
+            // Si el camión no está seleccionado, marcarlo
             if (camionSeleccionado !== id) {
                 camionSeleccionado = id;
                 const camion = camiones.find(c => c.id === id);
                 if (camion && camion.estado === 'disponible') {
                     camion.estado = 'ocupado';
                     camion.tiempo_ocupacion = 60; // Tiempo de ocupación inicial de 1 hora
-                    document.getElementById('camion_seleccionado').value = id; // Guardar el camión seleccionado
+                    document.getElementById('camion_seleccionado').value = id; // Guardar el ID del camión seleccionado
                 }
             } else {
-                desmarcarCamion(); // Desmarcar si ya está seleccionado
+                // Desmarcar el camión si ya estaba seleccionado
+                desmarcarCamion();
             }
-            cargarCamiones();
+            cargarCamiones(); // Recargar los camiones
         }
 
+        // Función para desmarcar el camión
         function desmarcarCamion() {
             if (camionSeleccionado !== null) {
                 const camion = camiones[camionSeleccionado - 1];
-                camion.estado = 'disponible'; // Cambiar a disponible
-                camion.tiempo_ocupacion = 0; // Reiniciar tiempo
-                camionSeleccionado = null; // Limpiar selección
-                document.getElementById('camion_seleccionado').value = ''; // Limpiar el campo oculto
+                camion.estado = 'disponible';
+                camion.tiempo_ocupacion = 0;
+                camionSeleccionado = null;
+                document.getElementById('camion_seleccionado').value = '';
                 cargarCamiones(); // Recargar camiones
             }
         }
 
+        // Función para actualizar el estado de los camiones
         function actualizarCamiones() {
             camiones.forEach(camion => {
                 if (camion.estado === 'ocupado' && camion.tiempo_ocupacion > 0) {
-                    camion.tiempo_ocupacion -= 1; // Descontar un minuto
+                    camion.tiempo_ocupacion -= 1; // Reducir el tiempo de ocupación en 1 minuto
                     if (camion.tiempo_ocupacion === 0) {
-                        camion.estado = 'disponible'; // Cambiar a disponible si el tiempo se acaba
+                        camion.estado = 'disponible'; // Cambiar el camión a disponible si se acaba el tiempo
                     }
                 }
             });
@@ -162,6 +186,7 @@
         // Llamar a la función de actualización cada minuto
         setInterval(actualizarCamiones, 60000); // 60000 ms = 1 minuto
 
+        // Cargar los camiones cuando la página se carga
         window.onload = cargarCamiones;
     </script>
 </body>

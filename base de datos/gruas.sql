@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `gruas` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `gruas`;
 -- MySQL dump 10.13  Distrib 8.0.26, for Win64 (x86_64)
 --
 -- Host: localhost    Database: gruas
@@ -26,10 +24,10 @@ DROP TABLE IF EXISTS `camiones`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `camiones` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `estado` enum('disponible','ocupado') NOT NULL,
-  `tiempo_ocupacion` int DEFAULT '0',
+  `estado` enum('disponible','ocupado') DEFAULT 'disponible',
+  `tiempo_ocupacion` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +36,6 @@ CREATE TABLE `camiones` (
 
 LOCK TABLES `camiones` WRITE;
 /*!40000 ALTER TABLE `camiones` DISABLE KEYS */;
-INSERT INTO `camiones` VALUES (1,'ocupado',60),(2,'disponible',0),(3,'disponible',0),(4,'disponible',0);
 /*!40000 ALTER TABLE `camiones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -57,10 +54,11 @@ CREATE TABLE `solicitudes` (
   `email` varchar(100) NOT NULL,
   `descripcion` text NOT NULL,
   `camion_id` int DEFAULT NULL,
+  `fecha_solicitud` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `camion_id` (`camion_id`),
-  CONSTRAINT `solicitudes_ibfk_1` FOREIGN KEY (`camion_id`) REFERENCES `camiones` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `solicitudes_ibfk_1` FOREIGN KEY (`camion_id`) REFERENCES `camiones` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,7 +67,6 @@ CREATE TABLE `solicitudes` (
 
 LOCK TABLES `solicitudes` WRITE;
 /*!40000 ALTER TABLE `solicitudes` DISABLE KEYS */;
-INSERT INTO `solicitudes` VALUES (1,'fd','fd','545','fer@gpa.com','dsd',1),(2,'fer','wilson','154','fer@xn--g-rga.com','sib bateria',2),(3,'yu','uy','96','lklkoo@ghhlgh.com','fdfds',3),(4,'wqew','ewfd','7854','lkg@ho.com','fdsf',4),(5,'ioiu','oiuo','555','dfsd@hlgkh','fgdsfg',3),(6,'yty','tyrt','545','ewrk@ghfgh.com','fds',3),(7,'yty','tyrt','545','ewrk@ghfgh.com','fds',1);
 /*!40000 ALTER TABLE `solicitudes` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -82,4 +79,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-22  0:53:52
+-- Dump completed on 2024-11-20 21:56:56

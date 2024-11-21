@@ -1,8 +1,8 @@
 <?php
 // Configuración de la base de datos
-$servername = "localhost"; 
-$username = "root"; 
-$password = "root"; 
+$servername = "localhost";
+$username = "root";
+$password = "root";
 $dbname = "gruas";
 
 // Crear conexión
@@ -27,24 +27,41 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         die("Error: Todos los campos son obligatorios.");
     }
 
+    // Verificar si el camión seleccionado existe en la base de datos
+    if ($camion_id) {
+        $stmt_check = $conn->prepare("SELECT id FROM camiones WHERE id = ?");
+        $stmt_check->bind_param("i", $camion_id);
+        $stmt_check->execute();
+        $stmt_check->store_result();
+        if ($stmt_check->num_rows === 0) {
+            die("Error: El camión seleccionado no existe.");
+        }
+        $stmt_check->close();
+    }
+
     // Preparar y vincular la declaración para insertar la solicitud
     $stmt = $conn->prepare("INSERT INTO solicitudes (nombre, apellido, telefono, email, descripcion, camion_id) VALUES (?, ?, ?, ?, ?, ?)");
     if ($stmt === false) {
         die("Error en la preparación: " . $conn->error);
     }
-
     $stmt->bind_param("sssssi", $nombre, $apellido, $telefono, $email, $descripcion, $camion_id);
 
     // Ejecutar la declaración para insertar la solicitud
     if ($stmt->execute()) {
         // Actualizar el estado del camión solo si se ha seleccionado un camión
         if ($camion_id) {
-            $stmt_camion = $conn->prepare("UPDATE camiones SET estado = 'ocupado', tiempo_ocupacion = 60 WHERE id = ?");
+            $stmt_camion = $conn->prepare("UPDATE camiones SET estado = 'ocupado', tiempo_ocupacion = CURRENT_TIMESTAMP WHERE id = ?");
             $stmt_camion->bind_param("i", $camion_id);
             $stmt_camion->execute();
             $stmt_camion->close();
         }
-        echo "Solicitud guardada correctamente.";
+        // Mostrar mensaje de éxito y redirigir después de 5 segundos
+        echo "Solicitud guardada correctamente. Redirigiendo...";
+        echo "<script>
+                setTimeout(function(){
+                    window.location.href = 'index.html'; // Redirigir a index.html
+                }, 5000); // 5000 ms = 5 segundos
+              </script>";
     } else {
         echo "Error: " . $stmt->error;
     }

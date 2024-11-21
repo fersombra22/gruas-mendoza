@@ -1,28 +1,37 @@
-img{
-    border-radius: 25px;
-    height: 11vh;
-    margin-right: 1vw;
+/* Estilo para las imágenes dentro del documento */
+img {
+    border-radius: 25px; /* Bordes redondeados */
+    height: 11vh; /* Altura proporcional al 11% de la altura de la ventana */
+    margin-right: 1vw; /* Margen derecho del 1% del ancho de la ventana */
 }
-.camiones-container{
-    display: flex;
-    align-content: space-between;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    max-height: 90vh;
-    overflow-y: scroll;
+
+/* Contenedor de los camiones con estilo flexbox */
+.camiones-container {
+    display: flex; /* Usar flexbox para el layout */
+    align-content: space-between; /* Distribuir los elementos con espacio entre las filas */
+    justify-content: space-between; /* Espacio entre los elementos dentro de cada fila */
+    flex-wrap: wrap; /* Permitir que los elementos se envuelvan a la siguiente línea si no caben */
+    max-height: 90vh; /* Limitar la altura al 90% de la ventana */
+    overflow-y: scroll; /* Habilitar el scroll vertical si el contenido sobrepasa la altura */
 }
-.card{
-    width: fit-content;
+
+/* Estilo para las tarjetas de los camiones */
+.card {
+    width: fit-content; /* Ajustar el ancho de la tarjeta al contenido */
 }
+
+/* Estilo para las imágenes dentro de un jumbotron, asegurando que se adapten al contenedor */
 .jumbotron img.img-fluid {
-    max-width: 100%;
-    height: 30vh; 
+    max-width: 100%; /* La imagen no debe exceder el 100% del contenedor */
+    height: 30vh; /* La altura es el 30% de la ventana */
 }
-.img-fluid-1{
-    height: 20vh;
-    margin: auto;
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    justify-content: center;
+
+/* Estilo específico para una clase personalizada de imágenes */
+.img-fluid-1 {
+    height: 20vh; /* Altura del 20% de la ventana */
+    margin: auto; /* Centrar la imagen */
+    margin-left: auto; /* Centrado de manera automática a la izquierda */
+    margin-right: auto; /* Centrado de manera automática a la derecha */
+    display: flex; /* Usar flexbox para el layout */
+    justify-content: center; /* Asegurarse de que la imagen esté centrada horizontalmente */
 }
